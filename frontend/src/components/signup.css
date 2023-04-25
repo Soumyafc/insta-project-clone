@@ -1,0 +1,69 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.signup
+{
+    background-image: url("../img/wallpapersden.com_instagram-gradient_5120x2880.png");
+    background-size: cover;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.form-container{
+    background-color: white;
+    padding: 30px;
+    border: 1px solid rgb(198, 190, 190);
+    border-radius: 7px;
+}
+
+.signuplogo{
+    width: 200px;
+    object-fit: contain;
+    padding: 10px 0px;
+}
+
+.loginpara{
+    color: rgba(var(--f52, 142, 142, 142), 1);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 20px;
+    margin:0px 40px 20px 40px;
+}
+
+input{
+    padding: 5px;
+    margin: 3px 0px;
+    outline: none;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.two{
+    font-size: 12px;
+    margin: 3px 0px;
+}
+.form-container > div{
+    width: 80%;
+    margin: auto;
+}
+
+#submit-btn{
+    background-color: #1773ea;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-weight: 400;
+    padding: 5px 10px;
+    width: 80%;
+    cursor: pointer;
+    margin-top: 8px;
+}
+.form2{
+    padding-top: 10px;
+}

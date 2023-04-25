@@ -1,0 +1,33 @@
+.signin{
+    background-image: url("../img/wallpapersden.com_instagram-gradient_5120x2880.png");
+    background-size: cover;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+.loginform{
+    background-color: #ffffff4d;
+    padding: 30px;
+    border: 1px solid rgb(198, 190, 190);
+    border-radius: 7px;
+}
+.loginform2{
+    background-color: #ffffff4d;
+    padding: 15px;
+    border: 1px solid rgb(198, 190, 190);
+    border-radius: 7px;
+    font-size: 15px;
+    margin-top: 20px;
+}
+#login-btn{
+    background-color: #1773ea;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-weight: 400;
+    padding: 5px 10px;
+    
+    cursor: pointer;
+    margin-top: 8px;
+}

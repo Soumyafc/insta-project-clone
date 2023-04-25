@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+img{
+    width: 10%;
+    object-fit: contain;
+    cursor: pointer;
+    background: transparent;
+}
+
+.nav-container{
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 1px 5px 5px #e0dcdc;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    z-index:2;
+}
+
+.nav-menu{
+    display: flex;
+    list-style: none;
+}
+li{
+    padding: 15px 15px;
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
