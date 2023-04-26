@@ -8,6 +8,7 @@
 
 .card-header{
     display: flex;
+    ;
 }
 
 .card-header > h5{
@@ -16,11 +17,12 @@
 }
 
 .card-pic img{
-    width: 30px;
-    border-radius: 30px;
-    height: auto;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
     object-fit: contain;
-    padding: 5px;
+    /* //padding: 5px; */
+    
 }
 
 .card-image img{

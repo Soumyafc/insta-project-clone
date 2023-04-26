@@ -1,0 +1,50 @@
+.createPost{
+    max-width: 700px;
+    margin: 10px auto;
+    border: 1px solid rgb(173, 173, 173);
+    border-radius: 7px;
+}
+
+.main-div{
+    border-top: 1px solid rgb(173, 173, 173) ;
+}
+.post-header{
+    display: flex;
+   
+}
+
+#post-btn{
+    border: none;
+    color: #339ce3;
+    background:none;
+    font-weight: bolder;
+    cursor: pointer;
+    padding-left: 2px;
+    padding-right: 10px;
+
+}
+
+.details{
+    border-top: 1px solid rgb(173, 173, 173) ;
+}
+
+textarea{
+    width: 90%;
+    border: none;
+    outline: none;
+    padding: 15px;
+    margin-bottom: 3px;
+}
+.card-header2{
+    display: flex;
+    align-items: center;
+    gap:1rem;
+    padding: 5px;
+}
+
+#output{
+    width: 300px;
+    border: none;
+    outline: none;
+    margin-top: 5px;
+}

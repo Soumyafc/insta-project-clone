@@ -1,5 +1,6 @@
 import React from 'react';
 import './profile.css';
+import profileimg from "../img/profile.jpg";
 
 
 function Profile() {
@@ -8,7 +9,7 @@ function Profile() {
 
             <div className="profile-frame">
                 <div className="profile-pic">
-                    <img src="frontend\src\img\profile.jpg" alt="" />
+                    <img src={profileimg} alt="" />
                 </div>
                 <div className="profile-data">
                     <h1>Soumya</h1>
