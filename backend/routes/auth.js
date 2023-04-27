@@ -4,13 +4,18 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const USER = mongoose.model("USER");
 const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
+const { Jwt_secret } = require("../keys");
+const requirelogin = require('../middlewares/requirelogin');
 
 
 
 router.get('/', (req, res) => {
     res.send("hello");
 })
-
+router.get('/createPost', requirelogin,(req, res) => {
+    res.send("hello auth");
+})
 router.post('/signup', (req,res) => {
 
    const {name, userName, email, password} = req.body;
@@ -24,6 +29,7 @@ router.post('/signup', (req,res) => {
             if(savedUser)
             {
                 return res.status(422).json({error: "user already exists"});
+    
             }
 
             bcrypt.hash(password, 12) .then(hashedPassword => {
@@ -56,13 +62,13 @@ router.post("/signin", (req, res) => {
         }
         bcrypt.compare(password, savedUser.password).then((match) => {
             if (match) {
-                return res.status(200).json({ message: "Signed in Successfully" })
-                // const token = jwt.sign({ _id: savedUser.id }, Jwt_secret)
-                // const { _id, name, email, userName } = savedUser
+                // return res.status(200).json({ message: "Signed in Successfully" })
+                const token = jwt.sign({ _id: savedUser.id }, Jwt_secret)
+                const { _id, name, email, userName } = savedUser
 
-                // res.json({ token, user: { _id, name, email, userName } })
+                res.json({ token, user: { _id, name, email, userName } })
 
-                // console.log({ token, user: { _id, name, email, userName } })
+                console.log({ token, user: { _id, name, email, userName } })
             } else {
                 return res.status(422).json({ error: "Invalid password" })
             }
