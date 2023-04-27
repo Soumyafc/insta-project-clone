@@ -1,29 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./navbar.css";
 import instalogo from "../img/logo.png";
 import { Link } from "react-router-dom";
+import { LoginContext } from "../context/LoginContext";
 
-function Navbar({login}) {
+function Navbar({ login }) {
+  const { setModalOpen } = useContext(LoginContext);
   const loginStatus = () => {
     const token = localStorage.getItem("jwt");
     if (login || token) {
       return [
         <>
-          <Link  to="/profile">
+          <Link to="/profile">
             <li key="profile">Profile</li>
           </Link>
-          <Link  to="/createPost">
+          <Link to="/createPost">
             <li key="createpost">Create Post</li>
+          </Link>
+          <Link to={""}>
+            <button className="primaryBtn" onClick={() => setModalOpen(true)}>
+              Log Out
+            </button>
           </Link>
         </>,
       ];
     } else {
       return [
         <>
-          <Link  to="/signin">
+          <Link to="/signin">
             <li key="signin">Sign in</li>
           </Link>
-          <Link  to="/signup">
+          <Link to="/signup">
             <li key="signup">Sign Up</li>
           </Link>
         </>,
