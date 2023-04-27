@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import "./signin.css";
 import logo from "../img/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { LoginContext } from "../context/LoginContext";
 
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const {setUserLogin} = useContext(LoginContext);
   const navigate = useNavigate();
   const notifyA = (msg) => toast.error(msg);
   const notifyB = (msg) => toast.success(msg);
@@ -37,14 +38,14 @@ function SignIn() {
           notifyA(data.error);
         } else {
           notifyB("Signed In Successfully");
-          //console.log(data);
-        //   localStorage.setItem("jwt", data.token);
-        //   localStorage.setItem("user", JSON.stringify(data.user));
+          console.log(data);
+          localStorage.setItem("jwt", data.token);
+        //localStorage.setItem("user", JSON.stringify(data.user));
 
-        //   setUserLogin(true);
+          setUserLogin(true);
           navigate("/");
         }
-        console.log(data);
+        //console.log(data);
       });
   };
 

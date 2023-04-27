@@ -5,6 +5,13 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
 function Home() {
+    const navigate = useNavigate();
+    useEffect(() => {
+        const token = localStorage.getItem('jwt');
+        if(!token){
+            navigate("./signup");
+        }
+    },[]);
     return (
         <>
         </>
