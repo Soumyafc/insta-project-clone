@@ -6,7 +6,7 @@ const { route } = require("./auth");
 const POST = mongoose.model("POST")
 
 
-// Route
+// get all post for the home page
 router.get("/allposts", requireLogin, (req, res) => {
     POST.find()
         .populate("postedBy", "_id name Photo")
@@ -16,6 +16,7 @@ router.get("/allposts", requireLogin, (req, res) => {
         .catch(err => console.log(err))
 })
 
+//for craeting the post in the create post page
 router.post("/createPost", requireLogin, (req, res) => {
     const { body, pic } = req.body;
     console.log(pic)
@@ -33,29 +34,27 @@ router.post("/createPost", requireLogin, (req, res) => {
     }).catch(err => console.log(err))
 })
 
+//for profile page update 
 router.get("/myposts", requireLogin, (req, res) => {
     POST.find({ postedBy: req.user._id })
         .populate("postedBy", "_id name")
         .populate("comments.postedBy", "_id name")
-        .sort("-createdAt")
+        // .sort("-createdAt")
         .then(myposts => {
             res.json(myposts)
         })
 })
 
+//update likes in the db
 router.put("/like", requireLogin, (req, res) => {
     POST.findByIdAndUpdate(req.body.postId, {
         $push: { likes: req.user._id }
     }, {
         new: true
-    }).populate("postedBy", "_id name Photo")
-        .exec((err, result) => {
-            if (err) {
-                return res.status(422).json({ error: err })
-            } else {
-                res.json(result)
-            }
-        })
+    }).then((result) => {
+        res.json(result);
+    })
+    .catch(err => {console.log(err)})
 })
 
 router.put("/unlike", requireLogin, (req, res) => {
@@ -63,14 +62,10 @@ router.put("/unlike", requireLogin, (req, res) => {
         $pull: { likes: req.user._id }
     }, {
         new: true
-    }).populate("postedBy", "_id name Photo")
-        .exec((err, result) => {
-            if (err) {
-                return res.status(422).json({ error: err })
-            } else {
-                res.json(result)
-            }
-        })
+    }).then((result) => {
+        res.json(result);
+    })
+    .catch(err => {console.log(err)})
 })
 
 router.put("/comment", requireLogin, (req, res) => {
@@ -85,45 +80,61 @@ router.put("/comment", requireLogin, (req, res) => {
     })
         .populate("comments.postedBy", "_id name")
         .populate("postedBy", "_id name Photo")
-        .exec((err, result) => {
-            if (err) {
-                return res.status(422).json({ error: err })
-            } else {
-                res.json(result)
-            }
+        .then((result) => {
+            res.json(result);
         })
+        .catch(err => {console.log(err)})
 })
 
-// Api to delete post
+//Api to delete post
 router.delete("/deletePost/:postId", requireLogin, (req, res) => {
-    POST.findOne({ _id: req.params.postId })
-        .populate("postedBy", "_id")
-        .exec((err, post) => {
-            if (err || !post) {
-                return res.status(422).json({ error: err })
-            }
 
-            if (post.postedBy._id.toString() == req.user._id.toString()) {
+    console.log(req.params.postId);
+    // POST.findOne({ _id: req.params.postId })
+    //     .populate("postedBy", "_id")
+    //     .then((post) => {
+    //         if(post){
+    //             if (post.postedBy._id.toString() == req.user._id.toString()) {
 
-                post.remove()
-                    .then(result => {
-                        return res.json({ message: "Successfully deleted" })
-                    }).catch((err) => {
-                        console.log(err)
-                    })
-            }
-        })
+    //                 post.remove()
+    //                     .then(result => {
+    //                         return res.json({ message: "Successfully deleted" })
+    //                     }).catch((err) => {
+    //                         console.log(err)
+    //                     })
+    //             }
+    //         }
+    //     })
+    //     .catch(err => {
+    //         return res.status(422).json({error : err})
+    //     })
+        
+        // .exec((err, post) => {
+        //     if (err || !post) {
+        //         return res.status(422).json({ error: err })
+        //     }
+
+        //     if (post.postedBy._id.toString() == req.user._id.toString()) {
+
+        //         post.remove()
+        //             .then(result => {
+        //                 return res.json({ message: "Successfully deleted" })
+        //             }).catch((err) => {
+        //                 console.log(err)
+        //             })
+        //     }
+        // })
 })
 
 // to show following post
-router.get("/myfollwingpost", requireLogin, (req, res) => {
-    POST.find({ postedBy: { $in: req.user.following } })
-        .populate("postedBy", "_id name")
-        .populate("comments.postedBy", "_id name")
-        .then(posts => {
-            res.json(posts)
-        })
-        .catch(err => { console.log(err) })
-})
+// router.get("/myfollwingpost", requireLogin, (req, res) => {
+//     POST.find({ postedBy: { $in: req.user.following } })
+//         .populate("postedBy", "_id name")
+//         .populate("comments.postedBy", "_id name")
+//         .then(posts => {
+//             res.json(posts)
+//         })
+//         .catch(err => { console.log(err) })
+// })
 
 module.exports = router

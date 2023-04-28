@@ -11,11 +11,11 @@
   .profile-pic {
     height: fit-content;
   }
-  .profile-pic > img {
+  .profile-pic  img {
     width: 160px;
     height: 160px;
     object-fit: contain;
-    border-radius: 100px;
+    border-radius: 50%;
   }
   
   .profile-data {
@@ -70,5 +70,11 @@
     font-weight: bolder;
   
     font-size: 15px;
+  }
+
+  .profile-img{
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
   }
   

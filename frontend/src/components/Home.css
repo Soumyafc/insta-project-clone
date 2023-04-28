@@ -8,7 +8,7 @@
 
 .card-header{
     display: flex;
-    ;
+    align-items: center;
 }
 
 .card-header > h5{
@@ -17,12 +17,11 @@
 }
 
 .card-pic img{
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
+    width: 60px;
+    border-radius: 60px;
+    height: auto;
     object-fit: contain;
-    /* //padding: 5px; */
-    
+    padding: 5px;
 }
 
 .card-image img{
@@ -30,10 +29,15 @@
 }
 
 .card-content{
+    
     text-align: left;
     line-height: 4px;
     padding: 3px 10px;
     border-bottom: 1px solid rgb(173, 173, 173)
+}
+.card-content p{
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
 }
 
 .add-comment{
@@ -54,11 +58,12 @@
     ;font-weight: bolder;
     cursor: pointer;
     color: #339ce3;
+    padding: 4px;
 }
 
 
 .material-symbols-outlined-red {
-    color: red;
+    color: rgb(255, 66, 66);
   font-variation-settings:
   'FILL' 1,
   'wght' 700,
@@ -76,7 +81,7 @@
     top: 0;
     left: 0;
     background-color: rgba(16, 13, 13, 0.4);
-    
+
 }
 
 .container{
@@ -120,6 +125,7 @@
     color: white;
     border: none;
     cursor: pointer;
+    z-index: 2;
 }
 
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 
-import profileimg from "../img/profile2.jpg";
+import profileimg from "../img/profile.jpg";
 import "./Createpost.css";
 import defaultimage from "../img/dphoto.png";
 import { toast } from 'react-toastify';
@@ -97,7 +97,7 @@ function Createpost() {
           <div className="card-pic">
             <img src={profileimg} alt="pofile pic" />
           </div>
-          <h3>Andrew</h3>
+          <h3>{JSON.parse(localStorage.getItem("user")).name}</h3>
         </div>
         <textarea
           value={body}
