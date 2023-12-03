@@ -7,6 +7,9 @@ const POST = mongoose.model("POST")
 
 
 // get all post for the home page
+router.get("/check", (req, res) => {
+    res.send("Backend api call successfull");
+})
 router.get("/allposts", requireLogin, (req, res) => {
     POST.find()
         .populate("postedBy", "_id name Photo")
