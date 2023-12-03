@@ -1,4 +1,5 @@
 module.exports = {
-  mongoUrl:"mongodb+srv://soumyafcinsta812:WZLbQMdQdLJSATVm@cluster1.klvefhy.mongodb.net/instamongo?retryWrites=true&w=majority",
+  mongoUrl:
+    "mongodb+srv://srp80813instadb:pKfYB7HD9DTiV445@cluster0.466mmt8.mongodb.net/?retryWrites=true&w=majority",
   Jwt_secret: "soumyaocvneofu",
-}
+};
