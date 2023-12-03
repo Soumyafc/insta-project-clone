@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./profile.css";
 import profileimg from "../img/profile.jpg";
 import PostDetail from "./PostDetail";
+import { localhosturl } from "../../awsbackendkey";
 
 function Profile() {
   const [pic, setPic] = useState([]);
@@ -18,7 +19,7 @@ function Profile() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/myposts", {
+    fetch(localhosturl+"/myposts", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },

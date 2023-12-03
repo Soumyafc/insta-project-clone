@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import dimg from "../img/testimg1.jpeg";
 import profile2 from "../img/profile.jpg";
+import { localhosturl } from "../../awsbackendkey";
 
 function Home() {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ function Home() {
       navigate("./signup");
     }
 
-    fetch("http://localhost:5000/allposts", {
+    fetch(localhosturl+"/allposts", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
@@ -44,7 +45,7 @@ function Home() {
   };
 
   const likePost = (id) => {
-    fetch("http://localhost:5000/like", {
+    fetch(localhosturl+"/like", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -68,7 +69,7 @@ function Home() {
   };
 
   const unlikePost = (id) => {
-    fetch("http://localhost:5000/unlike", {
+    fetch(localhosturl+"/unlike", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -92,7 +93,7 @@ function Home() {
   };
 
   const makeComment = (text, id) => {
-    fetch("http://localhost:5000/comment", {
+    fetch(localhosturl+"/comment", {
       method: "put",
       headers: {
         "Content-Type": "application/json",

@@ -5,6 +5,7 @@ import "./Createpost.css";
 import defaultimage from "../img/dphoto.png";
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
+import { localhosturl } from "../../awsbackendkey";
 
 function Createpost() {
   const [body, setBody] = useState("");
@@ -21,7 +22,7 @@ function Createpost() {
     // saving post to mongodb
     if (url) {
 
-      fetch("http://localhost:5000/createPost", {
+      fetch(localhosturl+"/createPost", {
         method: "post",
         headers: {
           "Content-Type": "application/json",

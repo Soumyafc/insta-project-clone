@@ -3,6 +3,7 @@ import logo from "../img/logo.png";
 import "./signup.css";
 import { Link , useNavigate} from "react-router-dom";
 import { toast } from 'react-toastify';
+import { localhosturl } from "../../awsbackendkey";
 
 function SignUp() {
 
@@ -30,7 +31,7 @@ function SignUp() {
     }
 
     // Sending data to server
-    fetch("http://localhost:5000/signup", {
+    fetch(localhosturl+"/signup", {
       method: "post",
       headers: {
         "Content-Type": "application/json"
