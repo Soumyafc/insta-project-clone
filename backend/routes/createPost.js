@@ -19,7 +19,7 @@ router.get("/allposts", requireLogin, (req, res) => {
 //for craeting the post in the create post page
 router.post("/createPost", requireLogin, (req, res) => {
     const { body, pic } = req.body;
-    console.log(pic)
+    //console.log(pic)
     if (!body || !pic) {
         return res.status(422).json({ error: "Please add all the fields" })
     }
