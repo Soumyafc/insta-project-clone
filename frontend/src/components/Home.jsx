@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import dimg from "../img/testimg1.jpeg";
 import profile2 from "../img/profile.jpg";
-import { localhosturl } from "../../awsbackendkey";
+import { localhosturl } from "../awsbackendkey";
 
 function Home() {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ function Home() {
       navigate("./signup");
     }
 
-    fetch(localhosturl+"/allposts", {
+    fetch(localhosturl + "/allposts", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
@@ -45,7 +45,7 @@ function Home() {
   };
 
   const likePost = (id) => {
-    fetch(localhosturl+"/like", {
+    fetch(localhosturl + "/like", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +69,7 @@ function Home() {
   };
 
   const unlikePost = (id) => {
-    fetch(localhosturl+"/unlike", {
+    fetch(localhosturl + "/unlike", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -93,7 +93,7 @@ function Home() {
   };
 
   const makeComment = (text, id) => {
-    fetch(localhosturl+"/comment", {
+    fetch(localhosturl + "/comment", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -191,29 +191,28 @@ function Home() {
           </div>
         );
       })}
-      {show && 
-      
-      (<div className="showComment">
-        <div className="container">
-          <div className="postPic">
-            <img src={item.photo} alt="dimg" />
-          </div>
-          <div className="details">
-            <div
-              className="card-header"
-              style={{ borderBottom: "1px solid #00000029" }}
-            >
-              <div className="card-pic">
-                <img src={profile2} alt="profile" />
-              </div>
-              <h5>{item.postedBy.name}</h5>
+      {show && (
+        <div className="showComment">
+          <div className="container">
+            <div className="postPic">
+              <img src={item.photo} alt="dimg" />
             </div>
+            <div className="details">
+              <div
+                className="card-header"
+                style={{ borderBottom: "1px solid #00000029" }}
+              >
+                <div className="card-pic">
+                  <img src={profile2} alt="profile" />
+                </div>
+                <h5>{item.postedBy.name}</h5>
+              </div>
 
-            <div
-              className="comment-section"
-              style={{ borderBottom: "1px solid #00000029" }}
-            >
-              {item.comments.map((comment) => {
+              <div
+                className="comment-section"
+                style={{ borderBottom: "1px solid #00000029" }}
+              >
+                {item.comments.map((comment) => {
                   return (
                     <p className="comm">
                       <span
@@ -226,26 +225,24 @@ function Home() {
                     </p>
                   );
                 })}
+              </div>
 
-           
-            </div>
+              <div className="card-content">
+                <p>{item.likes.length} Likes</p>
+                <p>{item.body}</p>
+              </div>
 
-            <div className="card-content">
-              <p>{item.likes.length} Likes</p>
-              <p>{item.body}</p>
-            </div>
-
-            <div className="add-comment">
-              <span className="material-symbols-outlined">mood</span>
-              <input
-                type="text"
-                placeholder="Add a comment"
-                value={comment}
-                onChange={(e) => {
-                  setComment(e.target.value);
-                }}
-              />
-               <button
+              <div className="add-comment">
+                <span className="material-symbols-outlined">mood</span>
+                <input
+                  type="text"
+                  placeholder="Add a comment"
+                  value={comment}
+                  onChange={(e) => {
+                    setComment(e.target.value);
+                  }}
+                />
+                <button
                   className="comment"
                   onClick={() => {
                     makeComment(comment, item._id);
@@ -254,17 +251,17 @@ function Home() {
                 >
                   Post
                 </button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="close-comment" onClick={() => toggleComment()}>
-          <span className="material-symbols-outlined material-symbols-outlined-comment">
-            close
-          </span>
+          <div className="close-comment" onClick={() => toggleComment()}>
+            <span className="material-symbols-outlined material-symbols-outlined-comment">
+              close
+            </span>
+          </div>
         </div>
-      </div>)
-      }
+      )}
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./profile.css";
 import profileimg from "../img/profile.jpg";
 import PostDetail from "./PostDetail";
-import { localhosturl } from "../../awsbackendkey";
+import { localhosturl } from "../awsbackendkey";
 
 function Profile() {
   const [pic, setPic] = useState([]);
@@ -19,7 +19,7 @@ function Profile() {
   };
 
   useEffect(() => {
-    fetch(localhosturl+"/myposts", {
+    fetch(localhosturl + "/myposts", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
@@ -69,9 +69,7 @@ function Profile() {
           );
         })}
       </div>
-      {show &&
-        <PostDetail item={posts} toggleDetails={toggleDetails} />
-      }
+      {show && <PostDetail item={posts} toggleDetails={toggleDetails} />}
     </div>
   );
 }

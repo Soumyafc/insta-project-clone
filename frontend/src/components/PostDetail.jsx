@@ -2,18 +2,18 @@ import React from "react";
 import "./PostDetail.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { localhosturl } from "../../awsbackendkey";
+import { localhosturl } from "../awsbackendkey";
 
 export default function PostDetail({ item, toggleDetails }) {
   const navigate = useNavigate();
 
   // Toast functions
-//   const notifyA = (msg) => toast.error(msg);
+  //   const notifyA = (msg) => toast.error(msg);
   const notifyB = (msg) => toast.success(msg);
 
   const removePost = (postId) => {
     if (window.confirm("Do you really want to delete this post ?")) {
-      fetch(localhosturl+`/deletePost/${postId}`, {
+      fetch(localhosturl + `/deletePost/${postId}`, {
         method: "delete",
         headers: {
           Authorization: "Bearer " + localStorage.getItem("jwt"),

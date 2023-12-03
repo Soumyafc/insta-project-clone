@@ -1,11 +1,11 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 import profileimg from "../img/profile.jpg";
 import "./Createpost.css";
 import defaultimage from "../img/dphoto.png";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { localhosturl } from "../../awsbackendkey";
+import { localhosturl } from "../awsbackendkey";
 
 function Createpost() {
   const [body, setBody] = useState("");
@@ -18,32 +18,30 @@ function Createpost() {
   const notifyB = (msg) => toast.success(msg);
 
   useEffect(() => {
-
     // saving post to mongodb
     if (url) {
-
-      fetch(localhosturl+"/createPost", {
+      fetch(localhosturl + "/createPost", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer " + localStorage.getItem("jwt")
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
         body: JSON.stringify({
           body,
-          pic: url
-        })
-      }).then(res => res.json())
-        .then(data => {
+          pic: url,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
           if (data.error) {
             notifyA(data.error);
           } else {
             notifyB("Successfully Posted");
-            navigate("/")
+            navigate("/");
           }
         })
-        .catch(err => console.log(err))
+        .catch((err) => console.log(err));
     }
-
   }, [url]);
 
   const postDetails = () => {
@@ -58,8 +56,6 @@ function Createpost() {
       .then((res) => res.json())
       .then((data) => setUrl(data.url))
       .catch((err) => console.log(err));
-
-    
   };
 
   const loadfile = (event) => {

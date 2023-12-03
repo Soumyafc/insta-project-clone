@@ -1,15 +1,15 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import "./signin.css";
 import logo from "../img/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { LoginContext } from "../context/LoginContext";
-import { localhosturl } from "../../awsbackendkey";
+import { localhosturl } from "../awsbackendkey";
 
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {setUserLogin} = useContext(LoginContext);
+  const { setUserLogin } = useContext(LoginContext);
   const navigate = useNavigate();
   const notifyA = (msg) => toast.error(msg);
   const notifyB = (msg) => toast.success(msg);
@@ -23,7 +23,7 @@ function SignIn() {
       return;
     }
     // Sending data to server
-    fetch(localhosturl+"/signin", {
+    fetch(localhosturl + "/signin", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ function SignIn() {
         <div className="loginform">
           <img src={logo} alt="" className="signuplogo" />
           <div>
-          <input
+            <input
               type="email"
               name="email"
               id="email"
@@ -68,7 +68,7 @@ function SignIn() {
             />
           </div>
           <div>
-          <input
+            <input
               type="password"
               name="password"
               id="password"

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { mongoUrl } = require("./keys");
 const cors = require("cors")
 const app = express();
-const port = 5000;
+const port = 3888;
 
 app.use(cors());
 require("./models/model");
